@@ -5,7 +5,8 @@ import com.example.questapp.repository.UserRepository;
 import com.example.questapp.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,10 +20,6 @@ public class UserServiceImpl implements UserService {
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-
-
-
-
 
 
     @Override
@@ -51,7 +48,7 @@ public class UserServiceImpl implements UserService {
             foundUser.setPassword(newUser.getPassword());
             userRepository.save(foundUser);
             return foundUser;
-        }else{
+        } else {
             return null;
         }
     }
@@ -59,11 +56,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public void delete(String username) {
         Optional<User> user = userRepository.findByUsername(username);
-        if(user.isPresent()){
+        if (user.isPresent()) {
             User foundUser = user.get();
             userRepository.delete(foundUser);
             log.info(user.get().getUsername() + " is deleted.");
-        }else{
+        } else {
             //ToDo: custom exception
         }
     }

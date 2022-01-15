@@ -2,14 +2,12 @@ package com.example.questapp.controller;
 
 import com.example.questapp.helper.GenericResponse;
 import com.example.questapp.model.User;
-import com.example.questapp.repository.UserRepository;
 import com.example.questapp.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @Slf4j
@@ -34,14 +32,13 @@ public class UserController {
     }
 
     @GetMapping("/{username}")
-    public ResponseEntity<User>  getOneUser(@PathVariable String username)
-    {
+    public ResponseEntity<User> getOneUser(@PathVariable String username) {
         //Todo: custom exception
         return ResponseEntity.ok(userService.getOneUser(username).orElse(null));
     }
 
     @PutMapping("/{username}")
-    public ResponseEntity<User>  updateOneUser(@PathVariable String username, @RequestBody User newUser) {
+    public ResponseEntity<User> updateOneUser(@PathVariable String username, @RequestBody User newUser) {
         return ResponseEntity.ok(userService.updateOneUser(username, newUser));
     }
 

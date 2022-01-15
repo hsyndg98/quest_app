@@ -7,8 +7,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @Entity
@@ -21,5 +21,6 @@ public class User {
     @Column(unique = true)
     private String username;
     private String password;
+
 
 }
